@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to dev
-        uses: ./.github/actions/deploy/deploy.yml
+        uses: ./.github/actions/deploy
         with:
           env_name: dev
           port: 7001
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Tests on dev
-        uses: ./.github/actions/tests/tests.yml
+        uses: ./.github/actions/tests
         with:
           env_name: dev
 
@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to staging
-        uses: ./.github/actions/deploy/deploy.yml
+        uses: ./.github/actions/deploy
         with:
           env_name: staging
           port: 7002
@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Tests on staging
-        uses: ./.github/actions/tests/tests.yml
+        uses: ./.github/actions/tests
         with:
           env_name: staging
 
@@ -69,7 +69,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to preprod
-        uses: ./.github/actions/deploy/deploy.yml
+        uses: ./.github/actions/deploy
         with:
           env_name: preprod
           port: 7003
@@ -80,7 +80,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Tests on preprod
-        uses: ./.github/actions/tests/tests.yml
+        uses: ./.github/actions/tests
         with:
           env_name: preprod
 
@@ -90,7 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to prod
-        uses: ./.github/actions/deploy/deploy.yml
+        uses: ./.github/actions/deploy
         with:
           env_name: prod
           port: 7004
@@ -101,6 +101,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Tests on prod
-        uses: ./.github/actions/tests/tests.yml
+        uses: ./.github/actions/tests
         with:
           env_name: prod
