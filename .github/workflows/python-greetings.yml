@@ -3,6 +3,9 @@ name: Python Greetings CI/CD
 on:
   push:
     branches: [ main ]
+defaults:
+  run:
+    shell: cmd
 
 jobs:
   install-pip-deps:
