@@ -1,0 +1,29 @@
+name: "Deploy App"
+description: "Deploy python-greetings"
+inputs:
+  env_name:
+    required: true
+  port:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Clone python-greetings
+      uses: actions/checkout@v4
+      with:
+        repository: mtararujs/python-greetings
+        path: python-greetings
+
+    - name: Stop previous PM2 app
+      shell: bash
+      run: |
+        echo "Stopping PM2 process for ${{ inputs.env_name }}..."
+        pm2 delete greetings-app-${{ inputs.env_name }} || true
+      working-directory: python-greetings
+
+    - name: Start PM2 app
+      shell: bash
+      run: |
+        echo "Starting app on port ${{ inputs.port }}..."
+        pm2 start app.py --name greetings-app-${{ inputs.env_name }} -- --port ${{ inputs.port }}
+      working-directory: python-greetings
