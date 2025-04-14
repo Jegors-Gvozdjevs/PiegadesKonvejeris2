@@ -18,7 +18,7 @@ runs:
       shell: bash
       run: |
         echo "Stopping PM2 process for ${{ inputs.env_name }}..."
-        pm2 delete greetings-app-${{ inputs.env_name }} || true
+        pm2 delete greetings-app-${{ inputs.env_name }} & EXIT /B 0)
       working-directory: python-greetings
 
     - name: Start PM2 app
