@@ -3,24 +3,20 @@ description: "Run tests against environment"
 inputs:
   env_name:
     required: true
-runs:
-  using: "composite"
-  steps:
-    - name: Clone test repo
-      uses: actions/checkout@v4
-      with:
-        repository: mtararujs/course-js-api-framework
-        path: course-js-api-framework
 
-    - name: Install dependencies
-      shell: bash
+runs:
+  using: composite
+  steps:
+    - name: Test results
+      shell: cmd
+      run: echo "Testing the app to ${{ inputs.env }} environment..."
+    - uses: actions/checkout@v4
+      with:
+        repository: 'mtararujs/course-js-api-framework'
+        path: course-js-api-framework
+    - name: Setup tests on ${{ inputs.env }}
+      shell: cmd
+      working-directory: course-js-api-framework
       run: |
         npm install
-      working-directory: course-js-api-framework
-
-    - name: Run test command
-      shell: bash
-      run: |
-        echo "Running tests for environment: ${{ inputs.env_name }}"
-        npm run greetings greetings_${{ inputs.env_name }}
-      working-directory: course-js-api-framework
+        npm run greetings greetings_${{ inputs.env }}  
