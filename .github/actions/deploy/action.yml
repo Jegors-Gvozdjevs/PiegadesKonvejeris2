@@ -15,14 +15,14 @@ runs:
         path: python-greetings
 
     - name: Stop previous PM2 app
-      shell: bash
+      shell: cmd
       run: |
         echo "Stopping PM2 process for ${{ inputs.env_name }}..."
         pm2 delete greetings-app-${{ inputs.env_name }} & EXIT /B 0)
       working-directory: python-greetings
 
     - name: Start PM2 app
-      shell: bash
+      shell: cmd
       run: |
         echo "Starting app on port ${{ inputs.port }}..."
         pm2 start app.py --name greetings-app-${{ inputs.env_name }} -- --port ${{ inputs.port }}
